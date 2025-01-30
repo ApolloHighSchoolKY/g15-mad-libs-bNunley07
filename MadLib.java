@@ -40,25 +40,24 @@ public class MadLib
 			while(chopper.hasNext())
 			{
 				nouns.add(new String(chopper.next()));
-
+				if(story.equals("#"))
+				
+				return (story += getRandomNoun()+ " ");
+				}
+				
+				else if(story.equals("@"))
+				{
+				return(story += verbs.get(getRandomVerb()) + " ");
+				}
+				else if(story.equals("&"))
+				{
+				return(story += getRandomAdjective() + " ");
+				}
+				else 
+				return("" +story )
 			}
-			if(chopper.equals("#"))
-			{
-			return story += nouns.getRandomNoun + " ";
-			}
-			else if(chopper.equals("@"))
-			{
-			return story += verbs.getRandomVerb + " ";
-			
-			}
-			return story += adjectives.getRandomAdjective + " ";
-			
-			//While there is more of the story, read in the word/symbol
-
-				//If what was read in is one of the symbols, find a random
-				//word to replace it.
-			
-
+		
+		
 				chopper.close();
 		}
 		catch(Exception e)
@@ -95,7 +94,7 @@ public class MadLib
 			
 			while(reader1.hasNext())
 			{
-				nouns.add(reader1.next());
+				verbs.add(reader1.next());
 			}
 			reader1.close();
 		}
@@ -113,7 +112,7 @@ public class MadLib
 			
 			while(reader2.hasNext())
 			{
-				nouns.add(reader2.next());
+				adjectives.add(reader2.next());
 			}
 			reader2.close();
 		}
@@ -128,14 +127,14 @@ public class MadLib
 		Random randy = new Random();
 		int s = randy.nextInt(15) + 1;
 		
-		return "" + s;
+		return "" + verbs.get(randy.nextInt(verbs.size));
 	}
 
 	public String getRandomNoun()
 	{
-		Random randy = new Random();
-		int x = randy.nextInt(20) + 1;
-		return "" + x;
+		int spot = (int)(Math.random()*nouns.size());
+
+		return ""+ nouns.get(spot);
 	}
 
 	public String getRandomAdjective()
